@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ScrollAnimationDirective } from '../../shared/directives/scroll-animation.directive';
 import { AnimationService } from '../../core/services/animation.service';
 import { AboutComponent } from '../about/about.component';
-import { ExperienceComponent } from '../experience/experience.component';
 import { SkillsComponent } from '../skills/skills.component';
 import { ProjectsComponent } from '../projects/projects.component';
 import { ContactComponent } from '../contact/contact.component';
@@ -20,7 +19,6 @@ import { ContactComponent } from '../contact/contact.component';
     CommonModule,
     ScrollAnimationDirective,
     AboutComponent,
-    ExperienceComponent,
     SkillsComponent,
     ProjectsComponent,
     ContactComponent,

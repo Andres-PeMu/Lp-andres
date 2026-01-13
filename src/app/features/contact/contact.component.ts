@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ScrollAnimationDirective } from '../../shared/directives/scroll-animation.directive';
+import { EmailService } from '../../core/services/email.service';
 
 /**
  * Componente Contact - Formulario de contacto profesional
@@ -14,17 +15,22 @@ import { ScrollAnimationDirective } from '../../shared/directives/scroll-animati
   styleUrl: './contact.component.css',
 })
 export class ContactComponent {
+  private emailService = inject(EmailService);
   contactForm: FormGroup;
-  readonly isSubmitting = false;
-  readonly isSubmitted = false;
+  
+  get isSubmitting(): boolean {
+    return this.emailService.isSending();
+  }
+
+  get isSuccess(): boolean {
+    return this.emailService.isSuccess();
+  }
+
+  get error(): string | null {
+    return this.emailService.error();
+  }
 
   readonly contactInfo = [
-    {
-      icon: 'email',
-      title: 'Email',
-      value: 'contacto@ejemplo.com',
-      link: 'mailto:contacto@ejemplo.com',
-    },
     {
       icon: 'linkedin',
       title: 'LinkedIn',
@@ -32,9 +38,15 @@ export class ContactComponent {
       link: 'https://www.linkedin.com/in/andres-felipe-pe%C3%B1a-mu%C3%B1oz-9b6725159/',
     },
     {
-      icon: 'location',
-      title: 'Ubicación',
-      value: 'Colombia',
+      icon: 'email',
+      title: 'Email',
+      value: 'andres.pena.m15@hotmail.com',
+      link: 'mailto:andres.pena.m15@hotmail.com',
+    },
+    {
+      icon: 'cv',
+      title: 'Descargar CV',
+      value: 'Curriculum Vitae',
       link: '#',
     },
   ];
@@ -48,13 +60,25 @@ export class ContactComponent {
     });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.contactForm.valid) {
-      // Aquí implementarías el envío del formulario
-      // Por ejemplo, con EmailJS, un servicio backend, etc.
-      console.log('Form submitted:', this.contactForm.value);
-      // Reset form after submission
-      // this.contactForm.reset();
+      const formValue = this.contactForm.value;
+      
+      const success = await this.emailService.sendEmail({
+        from_name: formValue.name,
+        from_email: formValue.email,
+        subject: formValue.subject,
+        message: formValue.message,
+      });
+
+      if (success) {
+        // Reset form después de enviar exitosamente
+        this.contactForm.reset();
+        // Limpiar mensaje de éxito después de 5 segundos
+        setTimeout(() => {
+          this.emailService.reset();
+        }, 5000);
+      }
     } else {
       // Mark all fields as touched to show validation errors
       Object.keys(this.contactForm.controls).forEach((key) => {

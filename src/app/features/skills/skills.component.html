@@ -8,86 +8,64 @@
       <h2
         class="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4"
       >
-        Habilidades y <span class="gradient-text">Tecnologías</span>
+        Stack <span class="gradient-text">Tecnológico</span>
       </h2>
       <p class="text-lg text-text-secondary max-w-2xl mx-auto">
-        Stack tecnológico completo para desarrollar soluciones de extremo a extremo
+        Tecnologías principales y complementarias ordenadas por especialización
       </p>
     </div>
 
-    <!-- Skills Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      @for (category of skillCategories; track category.title; let i = $index) {
-        <div
-          appScrollAnimation
-          class="bg-white rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow animate-on-scroll"
-          [style.animation-delay]="i * 0.1 + 's'"
-        >
-          <!-- Category Header -->
-          <div class="flex items-center gap-3 mb-6">
-            <span class="text-3xl">{{ category.icon }}</span>
-            <h3 class="text-2xl font-bold text-text-primary">{{ category.title }}</h3>
+    <!-- Principal Stack -->
+    <div appScrollAnimation class="mb-12 animate-on-scroll" style="animation-delay: 0.1s">
+      <h3 class="text-2xl font-bold text-text-primary mb-2 text-center">
+        Tecnologías Principales
+      </h3>
+      <p class="text-text-secondary text-center mb-6 max-w-2xl mx-auto">
+        Stack tecnológico con el que trabajo día a día para construir soluciones de calidad
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+        @for (tech of principalStack; track tech.name) {
+          <div
+            class="px-6 py-3 rounded-lg font-semibold text-lg shadow-lg text-white transition-transform hover:scale-105"
+            [style.background]="'linear-gradient(135deg, ' + tech.colors.from + ' 0%, ' + tech.colors.to + ' 100%)'"
+          >
+            {{ tech.name }}
           </div>
-
-          <!-- Skills List -->
-          <div class="space-y-4">
-            @for (skill of category.skills; track skill.name) {
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-sm font-semibold text-text-primary">{{
-                    skill.name
-                  }}</span>
-                  <span class="text-xs text-text-secondary">{{ skill.level }}%</span>
-                </div>
-                <!-- Progress Bar -->
-                <div class="w-full h-2 bg-background-alt rounded-full overflow-hidden">
-                  <div
-                    class="h-full bg-gradient-to-r from-primary to-accent rounded-full transition-all duration-1000 ease-out"
-                    [style.width.%]="skill.level"
-                  ></div>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      }
+        }
+      </div>
     </div>
 
-    <!-- Additional Info -->
-    <div
-      appScrollAnimation
-      class="mt-16 text-center animate-on-scroll"
-      style="animation-delay: 0.4s"
-    >
-      <p class="text-text-secondary mb-6">
-        Siempre aprendiendo nuevas tecnologías y mejores prácticas
-      </p>
-      <div class="flex flex-wrap justify-center gap-3">
-        <span
-          class="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-semibold"
-        >
-          Clean Code
-        </span>
-        <span
-          class="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-semibold"
-        >
-          SOLID Principles
-        </span>
-        <span
-          class="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-semibold"
-        >
-          Design Patterns
-        </span>
-        <span
-          class="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-semibold"
-        >
-          Agile/Scrum
-        </span>
-        <span
-          class="px-4 py-2 bg-primary/10 text-primary rounded-lg text-sm font-semibold"
-        >
-          TDD
-        </span>
+    <!-- Complementario Stack -->
+    <div appScrollAnimation class="mb-12 animate-on-scroll" style="animation-delay: 0.2s">
+      <h3 class="text-2xl font-bold text-text-primary mb-6 text-center">
+        Complementario
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+        @for (tech of complementarioStack; track tech.name) {
+          <div
+            class="px-5 py-2.5 rounded-lg font-medium text-base shadow-md text-white transition-transform hover:scale-105"
+            [style.background]="'linear-gradient(135deg, ' + tech.colors.from + ' 0%, ' + tech.colors.to + ' 100%)'"
+          >
+            {{ tech.name }}
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Experiencia Adicional -->
+    <div appScrollAnimation class="text-center animate-on-scroll" style="animation-delay: 0.3s">
+      <h3 class="text-xl font-semibold text-text-secondary mb-4">
+        Experiencia adicional
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+        @for (tech of experienciaAdicional; track tech.name) {
+          <div
+            class="px-5 py-2.5 rounded-lg font-medium text-base shadow-md text-white transition-transform hover:scale-105"
+            [style.background]="'linear-gradient(135deg, ' + tech.colors.from + ' 0%, ' + tech.colors.to + ' 100%)'"
+          >
+            {{ tech.name }}
+          </div>
+        }
       </div>
     </div>
   </div>

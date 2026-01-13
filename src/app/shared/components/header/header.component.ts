@@ -22,9 +22,8 @@ export class HeaderComponent implements OnInit {
   readonly navItems = [
     { label: 'Inicio', href: '#hero' },
     { label: 'Sobre Mí', href: '#about' },
-    { label: 'Experiencia', href: '#experience' },
+    { label: 'Experiencia', href: '#projects' },
     { label: 'Habilidades', href: '#skills' },
-    { label: 'Proyectos', href: '#projects' },
     { label: 'Contacto', href: '#contact' },
   ];
 

@@ -2,6 +2,14 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollAnimationDirective } from '../../shared/directives/scroll-animation.directive';
 
+interface TechWithColors {
+  name: string;
+  colors: {
+    from: string;
+    to: string;
+  };
+}
+
 /**
  * Componente Skills - Habilidades y tecnologías
  */
@@ -13,52 +21,64 @@ import { ScrollAnimationDirective } from '../../shared/directives/scroll-animati
   styleUrl: './skills.component.css',
 })
 export class SkillsComponent {
-  readonly skillCategories = [
+  readonly principalStack: TechWithColors[] = [
     {
-      title: 'Frontend',
-      icon: '🎨',
-      skills: [
-        { name: 'Angular', level: 95 },
-        { name: 'TypeScript', level: 90 },
-        { name: 'React', level: 85 },
-        { name: 'HTML5/CSS3', level: 95 },
-        { name: 'Tailwind CSS', level: 90 },
-        { name: 'RxJS', level: 85 },
-      ],
+      name: 'Angular',
+      colors: { from: '#DD0031', to: '#C3002F' }, // Rojo Angular
     },
     {
-      title: 'Backend',
-      icon: '⚙️',
-      skills: [
-        { name: 'Node.js', level: 90 },
-        { name: 'Express', level: 88 },
-        { name: 'NestJS', level: 85 },
-        { name: 'REST APIs', level: 92 },
-        { name: 'GraphQL', level: 75 },
-        { name: 'Microservicios', level: 80 },
-      ],
+      name: 'TypeScript',
+      colors: { from: '#3178C6', to: '#235A97' }, // Azul TypeScript
     },
     {
-      title: 'Bases de Datos',
-      icon: '💾',
-      skills: [
-        { name: 'PostgreSQL', level: 88 },
-        { name: 'MongoDB', level: 85 },
-        { name: 'MySQL', level: 80 },
-        { name: 'Redis', level: 75 },
-      ],
+      name: 'Node.js',
+      colors: { from: '#339933', to: '#267326' }, // Verde Node.js
     },
     {
-      title: 'DevOps & Tools',
-      icon: '🛠️',
-      skills: [
-        { name: 'Git', level: 95 },
-        { name: 'Docker', level: 85 },
-        { name: 'CI/CD', level: 80 },
-        { name: 'AWS', level: 75 },
-        { name: 'Linux', level: 85 },
-        { name: 'Testing', level: 85 },
-      ],
+      name: 'PostgreSQL',
+      colors: { from: '#336791', to: '#2E5A7A' }, // Azul PostgreSQL
+    },
+    {
+      name: 'Ionic',
+      colors: { from: '#3880FF', to: '#2E6BE6' }, // Azul Ionic
+    },
+  ];
+
+  readonly complementarioStack: TechWithColors[] = [
+    {
+      name: 'Redis',
+      colors: { from: '#DC382D', to: '#B82E24' }, // Rojo Redis
+    },
+    {
+      name: 'Socket.IO',
+      colors: { from: '#010101', to: '#1A1A1A' }, // Negro Socket.IO
+    },
+    {
+      name: 'Bull',
+      colors: { from: '#FF6B6B', to: '#E55555' }, // Rojo/Naranja Bull
+    },
+    {
+      name: 'Git',
+      colors: { from: '#F05032', to: '#D43A1F' }, // Naranja Git
+    },
+    {
+      name: 'RxJS',
+      colors: { from: '#B7178C', to: '#9A1270' }, // Rosa RxJS
+    },
+  ];
+
+  readonly experienciaAdicional: TechWithColors[] = [
+    {
+      name: 'Vue.js',
+      colors: { from: '#4FC08D', to: '#3FA374' }, // Verde Vue.js
+    },
+    {
+      name: 'React.js',
+      colors: { from: '#61DAFB', to: '#4BC5D9' }, // Cyan React
+    },
+    {
+      name: 'React Native',
+      colors: { from: '#61DAFB', to: '#4BC5D9' }, // Cyan React Native
     },
   ];
 }

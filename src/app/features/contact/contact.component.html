@@ -8,11 +8,10 @@
       <h2
         class="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4"
       >
-        ¡Trabajemos <span class="gradient-text">Juntos!</span>
+        Contacto
       </h2>
-      <p class="text-lg text-text-secondary max-w-2xl mx-auto">
-        ¿Tienes un proyecto en mente? Me encantaría escuchar sobre él. Hagamos algo
-        increíble juntos.
+      <p class="text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto font-medium">
+        ¿Buscas un desarrollador senior para tu equipo?
       </p>
     </div>
 
@@ -118,6 +117,58 @@
             }
           </div>
 
+          <!-- Success Message -->
+          @if (isSuccess) {
+            <div
+              class="p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3"
+            >
+              <svg
+                class="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div>
+                <p class="font-semibold text-green-800 mb-1">¡Mensaje enviado!</p>
+                <p class="text-sm text-green-700">
+                  Te responderé lo antes posible. Gracias por contactarme.
+                </p>
+              </div>
+            </div>
+          }
+
+          <!-- Error Message -->
+          @if (error) {
+            <div
+              class="p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3"
+            >
+              <svg
+                class="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <div>
+                <p class="font-semibold text-red-800 mb-1">Error al enviar</p>
+                <p class="text-sm text-red-700">{{ error }}</p>
+              </div>
+            </div>
+          }
+
           <!-- Submit Button -->
           <button
             type="submit"
@@ -163,30 +214,21 @@
       <!-- Contact Info -->
       <div appScrollAnimation class="animate-on-scroll" style="animation-delay: 0.2s">
         <div class="space-y-6">
-          <div>
-            <h3 class="text-2xl font-bold text-text-primary mb-4">
-              Información de Contacto
-            </h3>
-            <p class="text-text-secondary leading-relaxed mb-8">
-              Prefieres otro método de contacto? No hay problema. Puedes encontrarme
-              en cualquiera de estas plataformas.
-            </p>
-          </div>
-
           <div class="space-y-4">
             @for (info of contactInfo; track info.title) {
               <a
                 [href]="info.link"
-                [target]="info.icon !== 'location' ? '_blank' : '_self'"
-                [rel]="info.icon !== 'location' ? 'noopener noreferrer' : ''"
-                class="flex items-start gap-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-all group"
+                [target]="info.icon !== 'cv' ? '_blank' : '_self'"
+                [rel]="info.icon !== 'cv' ? 'noopener noreferrer' : ''"
+                [download]="info.icon === 'cv'"
+                class="flex items-center gap-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all group border-2 border-transparent hover:border-primary"
               >
                 <div
-                  class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors"
+                  class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors"
                 >
                   @if (info.icon === 'email') {
                     <svg
-                      class="w-6 h-6 text-primary group-hover:text-white transition-colors"
+                      class="w-7 h-7 text-primary group-hover:text-white transition-colors"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -201,7 +243,7 @@
                   }
                   @if (info.icon === 'linkedin') {
                     <svg
-                      class="w-6 h-6 text-primary group-hover:text-white transition-colors"
+                      class="w-7 h-7 text-primary group-hover:text-white transition-colors"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -210,9 +252,9 @@
                       />
                     </svg>
                   }
-                  @if (info.icon === 'location') {
+                  @if (info.icon === 'cv') {
                     <svg
-                      class="w-6 h-6 text-primary group-hover:text-white transition-colors"
+                      class="w-7 h-7 text-primary group-hover:text-white transition-colors"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -221,21 +263,30 @@
                         stroke-linecap="round"
                         stroke-linejoin="round"
                         stroke-width="2"
-                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                      />
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                       />
                     </svg>
                   }
                 </div>
                 <div>
-                  <h4 class="font-semibold text-text-primary mb-1">{{ info.title }}</h4>
+                  <h4 class="text-lg font-bold text-text-primary mb-1">
+                    {{ info.title }}
+                  </h4>
                   <p class="text-text-secondary">{{ info.value }}</p>
                 </div>
+                <svg
+                  class="w-5 h-5 text-text-secondary group-hover:text-primary ml-auto transition-colors"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </a>
             }
           </div>

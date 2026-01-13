@@ -1,6 +1,6 @@
 <section
-  id="experience"
-  class="py-20 md:py-32 bg-background px-4 sm:px-6 lg:px-8"
+  id="technologies"
+  class="py-20 md:py-32 bg-background-alt px-4 sm:px-6 lg:px-8"
 >
   <div class="container mx-auto max-w-6xl">
     <!-- Section Header -->
@@ -8,117 +8,45 @@
       <h2
         class="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4"
       >
-        Experiencia <span class="gradient-text">Profesional</span>
+        Tecnologías <span class="gradient-text">Principales</span>
       </h2>
       <p class="text-lg text-text-secondary max-w-2xl mx-auto">
-        Mi trayectoria profesional reflejando años de experiencia construyendo
-        soluciones de software de clase empresarial
+        Stack tecnológico con el que trabajo día a día para construir soluciones de calidad
       </p>
     </div>
 
-    <!-- Timeline -->
-    <div class="relative max-w-4xl mx-auto">
-      <!-- Timeline Line -->
-      <div
-        class="absolute left-8 md:left-1/2 md:transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-primary/20"
-      ></div>
-
-      <!-- Experience Items -->
-      <div class="space-y-12">
-        @for (exp of experiences; track exp.title; let i = $index) {
+    <!-- Technologies Grid -->
+    <div
+      appScrollAnimation
+      class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-6 md:gap-8 animate-on-scroll"
+    >
+      @for (tech of technologies; track tech.name; let i = $index) {
+        <div
+          class="flex flex-col items-center justify-center p-4 md:p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all group"
+          [style.animation-delay]="i * 0.05 + 's'"
+        >
           <div
-            appScrollAnimation
-            class="relative animate-on-scroll"
-            [style.animation-delay]="i * 0.1 + 's'"
+            class="w-14 h-14 md:w-16 md:h-20 mb-3 md:mb-4 flex items-center justify-center group-hover:scale-110 transition-transform"
           >
-            <!-- Timeline Dot -->
-            <div
-              class="absolute left-6 md:left-1/2 md:transform md:-translate-x-1/2 w-4 h-4 rounded-full bg-primary border-4 border-background shadow-lg z-10"
-            >
-              @if (exp.current) {
-                <div
-                  class="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"
-                ></div>
-              }
-            </div>
-
-            <!-- Content Card -->
-            <div
-              class="ml-16 md:ml-0 md:flex md:items-center"
-              [class.md:flex-row-reverse]="i % 2 === 1"
-            >
-              <!-- Card -->
+            @if (tech.icon) {
+              <img
+                [src]="tech.icon"
+                [alt]="tech.name"
+                class="w-full h-full object-contain"
+              />
+            } @else {
               <div
-                class="bg-white rounded-xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow border border-gray-100"
+                class="w-full h-full rounded-lg bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-2xl md:text-3xl font-bold text-primary border-2 border-primary/20"
               >
-                <!-- Period Badge -->
-                <div class="flex items-center justify-between mb-4 flex-wrap gap-2">
-                  <span
-                    class="px-3 py-1 rounded-full text-xs font-semibold"
-                    [class.bg-primary/10]="exp.current"
-                    [class.text-primary]="exp.current"
-                    [class.bg-secondary/10]="!exp.current"
-                    [class.text-secondary]="!exp.current"
-                  >
-                    {{ exp.period }}
-                  </span>
-                  @if (exp.current) {
-                    <span
-                      class="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700"
-                    >
-                      Actual
-                    </span>
-                  }
-                </div>
-
-                <!-- Title -->
-                <h3 class="text-xl md:text-2xl font-bold text-text-primary mb-2">
-                  {{ exp.title }}
-                </h3>
-
-                <!-- Company -->
-                <p
-                  class="text-lg font-semibold text-primary mb-4 flex items-center gap-2"
-                >
-                  <svg
-                    class="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                    />
-                  </svg>
-                  {{ exp.company }}
-                </p>
-
-                <!-- Description -->
-                <p class="text-text-secondary mb-4 leading-relaxed">
-                  {{ exp.description }}
-                </p>
-
-                <!-- Technologies -->
-                <div class="flex flex-wrap gap-2 mt-4">
-                  @for (tech of exp.technologies; track tech) {
-                    <span
-                      class="px-3 py-1 bg-background-alt text-text-secondary text-sm rounded-lg font-medium"
-                    >
-                      {{ tech }}
-                    </span>
-                  }
-                </div>
+                {{ tech.name.charAt(0) }}
               </div>
-
-              <!-- Spacer for alternating layout -->
-              <div class="hidden md:block md:w-1/2"></div>
-            </div>
+            }
           </div>
-        }
-      </div>
+          <span class="text-xs md:text-sm font-semibold text-text-primary text-center">
+            {{ tech.name }}
+          </span>
+        </div>
+      }
     </div>
   </div>
 </section>
