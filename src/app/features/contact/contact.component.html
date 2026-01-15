@@ -216,43 +216,15 @@
         <div class="space-y-6">
           <div class="space-y-4">
             @for (info of contactInfo; track info.title) {
-              <a
-                [href]="info.link"
-                [target]="info.icon !== 'cv' ? '_blank' : '_self'"
-                [rel]="info.icon !== 'cv' ? 'noopener noreferrer' : ''"
-                [download]="info.icon === 'cv'"
-                class="flex items-center gap-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all group border-2 border-transparent hover:border-primary"
-              >
-                <div
-                  class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors"
+              @if (info.icon === 'cv') {
+                <button
+                  type="button"
+                  (click)="downloadCV()"
+                  class="w-full flex items-center gap-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all group border-2 border-transparent hover:border-primary text-left"
                 >
-                  @if (info.icon === 'email') {
-                    <svg
-                      class="w-7 h-7 text-primary group-hover:text-white transition-colors"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                      />
-                    </svg>
-                  }
-                  @if (info.icon === 'linkedin') {
-                    <svg
-                      class="w-7 h-7 text-primary group-hover:text-white transition-colors"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                      />
-                    </svg>
-                  }
-                  @if (info.icon === 'cv') {
+                  <div
+                    class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors"
+                  >
                     <svg
                       class="w-7 h-7 text-primary group-hover:text-white transition-colors"
                       fill="none"
@@ -266,28 +238,85 @@
                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                       />
                     </svg>
-                  }
-                </div>
-                <div>
-                  <h4 class="text-lg font-bold text-text-primary mb-1">
-                    {{ info.title }}
-                  </h4>
-                  <p class="text-text-secondary">{{ info.value }}</p>
-                </div>
-                <svg
-                  class="w-5 h-5 text-text-secondary group-hover:text-primary ml-auto transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold text-text-primary mb-1">
+                      {{ info.title }}
+                    </h4>
+                    <p class="text-text-secondary">{{ info.value }}</p>
+                  </div>
+                  <svg
+                    class="w-5 h-5 text-text-secondary group-hover:text-primary ml-auto transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </button>
+              } @else {
+                <a
+                  [href]="info.link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-4 p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition-all group border-2 border-transparent hover:border-primary"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
-              </a>
+                  <div
+                    class="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors"
+                  >
+                    @if (info.icon === 'email') {
+                      <svg
+                        class="w-7 h-7 text-primary group-hover:text-white transition-colors"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                    }
+                    @if (info.icon === 'linkedin') {
+                      <svg
+                        class="w-7 h-7 text-primary group-hover:text-white transition-colors"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                        />
+                      </svg>
+                    }
+                  </div>
+                  <div>
+                    <h4 class="text-lg font-bold text-text-primary mb-1">
+                      {{ info.title }}
+                    </h4>
+                    <p class="text-text-secondary">{{ info.value }}</p>
+                  </div>
+                  <svg
+                    class="w-5 h-5 text-text-secondary group-hover:text-primary ml-auto transition-colors"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </a>
+              }
             }
           </div>
         </div>

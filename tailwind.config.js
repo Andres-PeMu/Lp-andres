@@ -23,6 +23,9 @@ module.exports = {
           primary: 'var(--text-primary)',
           secondary: 'var(--text-secondary)',
         },
+        border: {
+          DEFAULT: 'var(--border)',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ScrollAnimationDirective } from '../../shared/directives/scroll-animation.directive';
 import { EmailService } from '../../core/services/email.service';
+import { CVGeneratorService } from '../../core/services/cv-generator.service';
+import { cvData } from '../../core/data/cv-data';
 
 /**
  * Componente Contact - Formulario de contacto profesional
@@ -16,6 +18,7 @@ import { EmailService } from '../../core/services/email.service';
 })
 export class ContactComponent {
   private emailService = inject(EmailService);
+  private cvGenerator = inject(CVGeneratorService);
   contactForm: FormGroup;
   
   get isSubmitting(): boolean {
@@ -30,7 +33,13 @@ export class ContactComponent {
     return this.emailService.error();
   }
 
-  readonly contactInfo = [
+  readonly contactInfo: Array<{
+    icon: string;
+    title: string;
+    value: string;
+    link?: string;
+    action?: string;
+  }> = [
     {
       icon: 'linkedin',
       title: 'LinkedIn',
@@ -47,7 +56,7 @@ export class ContactComponent {
       icon: 'cv',
       title: 'Descargar CV',
       value: 'Curriculum Vitae',
-      link: '#',
+      action: 'downloadCV',
     },
   ];
 
@@ -101,5 +110,9 @@ export class ContactComponent {
       }
     }
     return '';
+  }
+
+  downloadCV(): void {
+    this.cvGenerator.generateCV(cvData);
   }
 }

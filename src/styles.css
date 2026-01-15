@@ -5,22 +5,25 @@
 
 /* Sistema de colores global - Custom Properties */
 :root {
-  /* Colores principales - Teal/Cyan */
-  --primary: #0ea5e9;
-  --primary-dark: #0284c7;
-  --primary-light: #38bdf8;
+  /* Colores principales - Azul vibrante pero profesional */
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
 
-  /* Colores secundarios */
+  /* Colores secundarios - Más cálidos */
   --secondary: #64748b;
-  --accent: #14b8a6;
+  --accent: #06b6d4;
 
-  /* Fondos */
+  /* Fondos - Más luminosos y cálidos */
   --background: #ffffff;
   --background-alt: #f8fafc;
 
-  /* Textos */
+  /* Textos - Más suaves */
   --text-primary: #1e293b;
   --text-secondary: #64748b;
+
+  /* Bordes sutiles */
+  --border: #e2e8f0;
 }
 
 /* Base styles */
@@ -109,7 +112,16 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  /* Efectos sutiles profesionales */
+  .card-shadow {
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .card-shadow-hover {
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   }
 
   /* Animation for scroll to top button */

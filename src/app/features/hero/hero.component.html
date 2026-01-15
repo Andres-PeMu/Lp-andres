@@ -1,64 +1,68 @@
 <!-- Hero Section -->
 <section
   id="hero"
-  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background-alt to-background px-4 py-20"
+  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-blue-50/30 to-cyan-50/20 px-4 py-20"
 >
-  <!-- Background decoration -->
+  <!-- Background decoration alegre y profesional -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <!-- Gradientes suaves y luminosos -->
     <div
-      class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse"
+      class="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl animate-pulse"
+      style="animation-duration: 4s;"
     ></div>
     <div
-      class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-pulse"
-      style="animation-delay: 1s"
+      class="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-3xl animate-pulse"
+      style="animation-duration: 5s; animation-delay: 1s;"
     ></div>
+    <div
+      class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl"
+    ></div>
+    
+    <!-- Patrón de grid sutil -->
+    <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
   </div>
 
-  <div class="max-w-6xl mx-auto text-center relative z-10">
-    <!-- Greeting -->
+  <div class="max-w-5xl mx-auto text-center relative z-10">
+    <!-- Greeting alegre -->
     <p
       appScrollAnimation
-      class="text-sm md:text-base text-primary font-semibold mb-4 animate-on-scroll uppercase tracking-wider"
+      class="text-sm md:text-base text-primary font-semibold mb-6 animate-on-scroll uppercase tracking-wider"
     >
       👋 Hola, soy
     </p>
 
-    <!-- Main Heading -->
+    <!-- Main Heading - Más energético pero profesional -->
     <h1
       appScrollAnimation
-      class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-6 animate-on-scroll leading-tight"
+      class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-8 animate-on-scroll leading-tight"
       style="animation-delay: 0.1s"
     >
-      <span class="block mb-2">Andrés Felipe</span>
-      <span class="block mb-2">Peña Muñoz</span>
-      <span class="gradient-text text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
-        >Senior Fullstack Engineer</span
-      >
+      <span class="block mb-3 text-text-primary">Andrés Felipe</span>
+      <span class="block mb-4 text-text-primary">Peña Muñoz</span>
+      <span class="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl gradient-text">
+        Senior Fullstack Engineer
+      </span>
     </h1>
 
-    <!-- Subtitle -->
+    <!-- Subtitle con más energía -->
     <p
       appScrollAnimation
-      class="text-lg md:text-xl lg:text-2xl text-text-secondary max-w-3xl mx-auto mb-6 animate-on-scroll leading-relaxed"
+      class="text-xl md:text-2xl lg:text-3xl text-text-primary max-w-3xl mx-auto mb-6 font-medium animate-on-scroll leading-relaxed"
       style="animation-delay: 0.2s"
     >
-      Especializado en crear
-      <span class="font-semibold text-text-primary">soluciones escalables</span> y
-      <span class="font-semibold text-text-primary">de alto rendimiento</span> utilizando
-      tecnologías modernas y mejores prácticas de desarrollo.
+      Especializado en <span class="font-bold text-primary">Angular</span> y <span class="font-bold text-primary">Node.js</span>
     </p>
 
-    <!-- Description -->
+    <!-- Description más atractiva -->
     <p
       appScrollAnimation
-      class="text-base md:text-lg text-text-secondary max-w-2xl mx-auto mb-12 animate-on-scroll"
+      class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-12 leading-relaxed animate-on-scroll"
       style="animation-delay: 0.3s"
     >
-      Con más de 5 años de experiencia desarrollando aplicaciones web empresariales,
-      combino experiencia técnica sólida con pasión por la innovación.
+      Desarrollo aplicaciones web <span class="font-semibold text-text-primary">escalables</span>, <span class="font-semibold text-text-primary">mantenibles</span> y orientadas a negocio para entornos empresariales.
     </p>
 
-    <!-- CTA Buttons -->
+    <!-- CTA Buttons - Más atractivos y energéticos -->
     <div
       appScrollAnimation
       class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-on-scroll"
@@ -67,7 +71,7 @@
       <button
         type="button"
         (click)="scrollToSection('contact')"
-        class="group px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform flex items-center gap-2"
+        class="group px-8 py-4 bg-primary text-white rounded-lg font-semibold hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 flex items-center gap-2"
       >
         <span>Contáctame</span>
         <svg
@@ -87,42 +91,29 @@
       <button
         type="button"
         (click)="scrollToSection('projects')"
-        class="px-8 py-4 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105"
+        class="px-8 py-4 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-all transform hover:scale-105 shadow-sm hover:shadow-md"
       >
         Ver Proyectos
       </button>
-      <a
-        href="https://www.linkedin.com/in/andres-felipe-pe%C3%B1a-mu%C3%B1oz-9b6725159/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="px-8 py-4 border-2 border-secondary text-text-secondary rounded-lg font-semibold hover:border-primary hover:text-primary transition-all transform hover:scale-105 flex items-center gap-2"
-      >
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path
-            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-          />
-        </svg>
-        <span>LinkedIn</span>
-      </a>
     </div>
 
-    <!-- Stats / Quick Info -->
+    <!-- Stats / Quick Info - Más atractivo -->
     <div
       appScrollAnimation
-      class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto animate-on-scroll"
+      class="grid grid-cols-3 gap-8 mt-20 max-w-2xl mx-auto animate-on-scroll border-t border-border/50 pt-12"
       style="animation-delay: 0.5s"
     >
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">5+</div>
-        <div class="text-sm md:text-base text-text-secondary">Años de Experiencia</div>
+      <div class="text-center group">
+        <div class="text-4xl md:text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">5+</div>
+        <div class="text-sm text-text-secondary font-medium">Años de Experiencia</div>
       </div>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">50+</div>
-        <div class="text-sm md:text-base text-text-secondary">Proyectos Completados</div>
+      <div class="text-center group">
+        <div class="text-4xl md:text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">50+</div>
+        <div class="text-sm text-text-secondary font-medium">Proyectos Completados</div>
       </div>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">100%</div>
-        <div class="text-sm md:text-base text-text-secondary">Compromiso</div>
+      <div class="text-center group">
+        <div class="text-4xl md:text-5xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">100%</div>
+        <div class="text-sm text-text-secondary font-medium">Comprometido</div>
       </div>
     </div>
   </div>
