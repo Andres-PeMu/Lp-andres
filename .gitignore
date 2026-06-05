@@ -48,10 +48,7 @@ Thumbs.db
 .env.local
 .env.*.local
 
-# Environment files (mantener environment.example.ts pero NO los reales con credenciales)
-# ⚠️ IMPORTANTE: Si environment.ts contiene credenciales reales, debe estar en .gitignore
-src/environments/environment.ts
-src/environments/environment.prod.ts
+# Environment files (mantener environment.local.ts fuera del repo)
 src/environments/environment.local.ts
 
 # Build artifacts
