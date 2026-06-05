@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollAnimationDirective } from '../../shared/directives/scroll-animation.directive';
 import { AnimationService } from '../../core/services/animation.service';
+import { CvDownloadService } from '../../core/services/cv-download.service';
 import { AboutComponent } from '../about/about.component';
 import { SkillsComponent } from '../skills/skills.component';
 import { ProjectsComponent } from '../projects/projects.component';
@@ -27,9 +28,16 @@ import { ContactComponent } from '../contact/contact.component';
   styleUrl: './hero.component.css',
 })
 export class HeroComponent {
-  constructor(private animationService: AnimationService) {}
+  constructor(
+    private animationService: AnimationService,
+    private cvDownload: CvDownloadService,
+  ) {}
 
   scrollToSection(sectionId: string): void {
     this.animationService.scrollToElement(sectionId, 80);
+  }
+
+  downloadCV(): void {
+    this.cvDownload.download();
   }
 }

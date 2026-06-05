@@ -1,37 +1,41 @@
 import { CVData } from '../models/cv-data.model';
 
 /**
- * Datos del CV - Actualizar con información completa
- * TODO: Completar los campos marcados con "?"
+ * Datos del CV - Sincronizado con LinkedIn y CV profesional en PDF
  */
 export const cvData: CVData = {
   personalInfo: {
     fullName: 'Andrés Felipe Peña Muñoz',
     title: 'Senior Full Stack Engineer',
     email: 'andres.pena.m15@hotmail.com',
-    phone: '?', // TODO: Agregar teléfono
-    location: '?', // TODO: Agregar ciudad, país (ej: "Bogotá, Colombia")
+    phone: '(+57) 305 925 7656',
+    location: 'Popayán, Colombia',
     linkedin: 'https://www.linkedin.com/in/andres-felipe-pe%C3%B1a-mu%C3%B1oz-9b6725159/',
     github: 'https://github.com/Andres-PeMu',
   },
   summary:
-    'Ingeniero Electrónico y Senior Full Stack Engineer con más de 5 años de experiencia desarrollando soluciones web modernas para empresas de distintos sectores. Especializado en Angular y Node.js, con enfoque en arquitectura, rendimiento y escalabilidad. He participado en decisiones técnicas clave y en la construcción de sistemas que impactan directamente en la eficiencia operativa y la experiencia del usuario.',
+    'Ingeniero Electrónico y Senior Full Stack Engineer con más de 5 años de experiencia diseñando, estabilizando y manteniendo sistemas críticos en producción. Experiencia en plataformas de telemetría en tiempo real y aplicaciones de alta disponibilidad con MQTT, WebSockets y arquitecturas escalables. Desarrollo full stack con Angular, React, Vue.js y Node.js, y apps móviles multiplataforma con Ionic y React Native. Enfoque en código limpio, eficiencia, escalabilidad y confiabilidad.',
   experience: {
     years: '5+',
     description:
-      'Desarrollo aplicaciones web escalables, mantenibles y orientadas a negocio para entornos empresariales. Experiencia en arquitectura de microservicios, sistemas en tiempo real, optimización de rendimiento y escalabilidad.',
+      'Desarrollo aplicaciones web, móviles y APIs escalables para entornos empresariales. Experiencia en arquitectura de microservicios, sistemas en tiempo real, optimización de rendimiento y alta concurrencia con Redis, Socket.IO y Bull.',
   },
   education: [
     {
-      degree: '?', // TODO: Agregar título (ej: "Ingeniero Electrónico")
-      institution: '?', // TODO: Agregar universidad
-      year: '?', // TODO: Agregar año de graduación
+      degree: 'Ingeniero Electrónico',
+      institution: 'Corporación Universitaria Autónoma del Cauca',
+      year: '2015',
+    },
+    {
+      degree: 'Especialista en Bases de Datos',
+      institution: 'SENA - Popayán, Colombia',
+      year: '2017',
     },
   ],
   skills: {
-    principal: ['Angular', 'TypeScript', 'Node.js', 'PostgreSQL', 'Ionic'],
-    complementario: ['Redis', 'Socket.IO', 'Bull', 'Git', 'RxJS'],
-    adicional: ['Vue.js', 'React.js', 'React Native'],
+    principal: ['Angular', 'React', 'Vue.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Ionic', 'React Native'],
+    complementario: ['NestJS', 'Redis', 'Socket.IO', 'Bull', 'Git', 'RxJS', 'MQTT', 'Kafka'],
+    adicional: ['Express', 'Sass', 'Kotlin', 'C', 'C++'],
   },
   projects: [
     {
@@ -50,7 +54,7 @@ export const cvData: CVData = {
       title: 'EyeClinic - Sistema de Gestión Clínica',
       description:
         'Sistema integral de gestión clínica con aplicación móvil para pacientes. Mejoras en reportes, sistema de cierre de caja con precisión decimal y aplicación móvil nativa para Android e iOS.',
-      technologies: ['Angular', 'Ionic', 'Node.js', 'TypeScript', 'PostgreSQL', 'Mobile App'],
+      technologies: ['Vue.js', 'Ionic', 'Node.js', 'TypeScript', 'PostgreSQL', 'Mobile App'],
       achievements: [
         'Mejora de reportes para mayor usabilidad y claridad para el usuario.',
         'Corrección del sistema de cierre de caja con manejo preciso de decimales para garantizar exactitud financiera.',
@@ -58,11 +62,39 @@ export const cvData: CVData = {
         'Implementación de funcionalidades para visualización de citas, procedimientos pendientes y solicitud de nuevas citas.',
       ],
     },
+    {
+      title: 'Krocam Broaster Samir - Pedidos a Domicilio',
+      description:
+        'Plataforma de pedidos a domicilio para cocina virtual de pollo broaster. Carta digital, carrito visual, notificaciones push y apps en web, Android e iOS.',
+      technologies: ['React', 'Ionic', 'Capacitor', 'Firebase', 'TypeScript', 'Vite'],
+      achievements: [
+        'Carta digital con combos, precios y pedidos organizados para entrega a domicilio.',
+        'Apps nativas Android e iOS con Capacitor + Ionic React.',
+        'Notificaciones push con Firebase para seguimiento del pedido.',
+        'Integración de pedidos por WhatsApp y sistema de reseñas.',
+      ],
+    },
+    {
+      title: 'Conexión Patía - Radio Online Multiplataforma',
+      description:
+        'Aplicación de radio online con experiencia multiplataforma en web, móvil y desktop. Reproductor de música con programación en vivo accesible desde cualquier dispositivo.',
+      technologies: ['Ionic', 'JavaScript', 'UI/UX', 'Multiplataforma'],
+      achievements: [
+        'Desarrollo híbrido con Ionic para web, móvil y desktop.',
+        'Interfaz intuitiva con diseño moderno y navegación sencilla.',
+        'Reproductor de música con acceso al programa de radio del día.',
+      ],
+    },
   ],
   languages: [
-    // TODO: Agregar idiomas (ej: { name: 'Español', level: 'Nativo' }, { name: 'Inglés', level: 'Avanzado' })
+    { name: 'Español', level: 'Nativo' },
+    { name: 'Inglés', level: 'Intermedio' },
   ],
   certifications: [
-    // TODO: Agregar certificaciones si las hay (ej: { name: 'AWS Certified', issuer: 'Amazon', year: '2023' })
+    { name: 'Optimización y buenas prácticas en TypeScript para Node.js', issuer: 'Platzi', year: '2025' },
+    { name: 'Optimización y escalabilidad de código', issuer: 'Platzi', year: '2022' },
+    { name: 'Desarrollo de Apps Ionic', issuer: 'Platzi', year: '2021' },
+    { name: 'Fundamentos de Angular', issuer: 'Platzi', year: '2022' },
+    { name: 'Fundamentos de TypeScript', issuer: 'Platzi', year: '2021' },
   ],
 };

@@ -11,21 +11,21 @@
         Experiencia <span class="gradient-text">Destacada</span>
       </h2>
       <p class="text-lg text-text-secondary max-w-2xl mx-auto">
-        Proyectos empresariales que reflejan decisiones técnicas clave y experiencia en arquitectura, rendimiento y escalabilidad
+        Proyectos empresariales en producción — web, móvil y sistemas en tiempo real con impacto real en el negocio
       </p>
     </div>
 
     <!-- Featured Projects -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
       @for (project of projects; track project.title; let i = $index) {
         <div
           appScrollAnimation
-          class="group bg-white rounded-xl border border-border/50 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all animate-on-scroll card-shadow"
+          class="group bg-white rounded-xl border border-border/50 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all animate-on-scroll card-shadow flex flex-col"
           [style.animation-delay]="i * 0.1 + 's'"
         >
-          <!-- Project Header - Más atractivo -->
+          <!-- Project Header -->
           <div
-            class="relative h-28 bg-gradient-to-br from-primary to-accent overflow-hidden flex items-center justify-center"
+            class="relative h-28 bg-gradient-to-br from-primary to-accent overflow-hidden flex items-center justify-center flex-shrink-0"
           >
             <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-accent/90"></div>
             <h3 class="relative z-10 text-white text-xl md:text-2xl font-bold text-center px-6">
@@ -34,16 +34,27 @@
           </div>
 
           <!-- Project Content -->
-          <div class="p-6 md:p-8">
-            <p class="text-text-secondary mb-6 leading-relaxed text-lg">
+          <div class="p-6 md:p-8 flex flex-col flex-1">
+            <!-- Platforms -->
+            @if (project.platforms && project.platforms.length > 0) {
+              <div class="flex flex-wrap gap-2 mb-4">
+                @for (platform of project.platforms; track platform) {
+                  <span class="px-2 py-0.5 bg-primary/10 text-primary text-xs font-semibold rounded-full">
+                    {{ platform }}
+                  </span>
+                }
+              </div>
+            }
+
+            <p class="text-text-secondary mb-6 leading-relaxed">
               {{ project.description }}
             </p>
 
             <!-- Project Details -->
-            <ul class="space-y-2 mb-6">
+            <ul class="space-y-2 mb-6 flex-1">
               @for (detail of project.details; track detail) {
-                <li class="flex items-start gap-3 text-text-secondary">
-                  <span class="text-primary mt-1.5 flex-shrink-0">•</span>
+                <li class="flex items-start gap-3 text-text-secondary text-sm">
+                  <span class="text-primary mt-1 flex-shrink-0">•</span>
                   <span>{{ detail }}</span>
                 </li>
               }
@@ -102,7 +113,7 @@
                       d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     />
                   </svg>
-                  <span>Ver Demo</span>
+                  <span>{{ project.demoLabel || 'Ver Demo' }}</span>
                 </a>
               }
               @if (project.appStore) {
@@ -120,11 +131,155 @@
                   <span>Google Play</span>
                 </a>
               }
+              @if (project.appleStore) {
+                <a
+                  [href]="project.appleStore"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex items-center gap-2 text-gray-800 hover:text-gray-900 transition-colors font-semibold text-sm"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"
+                    />
+                  </svg>
+                  <span>App Store</span>
+                </a>
+              }
+              @if (project.showLinksModal && project.promoImage) {
+                <button
+                  type="button"
+                  (click)="openLinksModal(project)"
+                  class="flex items-center gap-2 text-primary hover:text-primary-dark transition-colors font-medium text-sm"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span>Ver apps</span>
+                </button>
+              }
             </div>
           </div>
         </div>
       }
     </div>
 
+    <!-- GitHub Projects Batch -->
+    <div appScrollAnimation class="mt-24 animate-on-scroll">
+      <div class="text-center mb-12">
+        <h3 class="text-2xl md:text-3xl font-bold text-text-primary mb-3">
+          Más proyectos en <span class="gradient-text">GitHub</span>
+        </h3>
+        <p class="text-text-secondary max-w-2xl mx-auto">
+          Repositorios relevantes que demuestran versatilidad full stack, móvil y arquitectura de software
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+        @for (repo of githubProjects; track repo.title; let i = $index) {
+          <div
+            appScrollAnimation
+            class="group bg-white rounded-lg border border-border/50 p-5 hover:shadow-lg hover:-translate-y-0.5 transition-all animate-on-scroll"
+            [style.animation-delay]="i * 0.05 + 's'"
+          >
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <h4 class="font-bold text-text-primary group-hover:text-primary transition-colors leading-snug">
+                {{ repo.title }}
+              </h4>
+              <svg class="w-5 h-5 text-text-secondary flex-shrink-0 group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
+                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+              </svg>
+            </div>
+
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">
+              {{ repo.description }}
+            </p>
+
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              @for (tech of repo.technologies; track tech) {
+                <span class="px-2 py-0.5 bg-background-alt text-text-secondary text-xs rounded border border-border">
+                  {{ tech }}
+                </span>
+              }
+            </div>
+
+            <div class="flex items-center gap-4 pt-3 border-t border-border">
+              <a
+                [href]="repo.github"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+              >
+                Ver repo →
+              </a>
+              @if (repo.demo) {
+                <a
+                  [href]="repo.demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm font-medium text-text-secondary hover:text-primary transition-colors"
+                >
+                  Demo
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="text-center mt-10">
+        <a
+          href="https://github.com/Andres-PeMu"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary hover:text-white transition-all"
+        >
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+          </svg>
+          Ver todos en GitHub
+        </a>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- Modal imagen Krocam -->
+@if (linksModalOpen() && linksModalProject(); as project) {
+  <div
+    class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Apps móviles Krocam Broaster Samir"
+    (click)="closeLinksModal()"
+  >
+    <div
+      class="relative max-w-md w-full animate-fade-in-down"
+      (click)="$event.stopPropagation()"
+    >
+      <button
+        type="button"
+        (click)="closeLinksModal()"
+        class="absolute -top-3 -right-3 z-10 w-9 h-9 rounded-full bg-white shadow-lg hover:bg-gray-100 text-text-primary flex items-center justify-center transition-colors"
+        aria-label="Cerrar"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      @if (project.promoImage) {
+        <img
+          [src]="project.promoImage"
+          [alt]="project.title + ' — QR Android, iOS y WhatsApp'"
+          class="w-full h-auto rounded-2xl shadow-2xl"
+        />
+      }
+    </div>
+  </div>
+}

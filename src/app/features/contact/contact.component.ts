@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ScrollAnimationDirective } from '../../shared/directives/scroll-animation.directive';
 import { EmailService } from '../../core/services/email.service';
-import { CVGeneratorService } from '../../core/services/cv-generator.service';
-import { cvData } from '../../core/data/cv-data';
+import { CvDownloadService } from '../../core/services/cv-download.service';
 
 /**
  * Componente Contact - Formulario de contacto profesional
@@ -18,7 +17,7 @@ import { cvData } from '../../core/data/cv-data';
 })
 export class ContactComponent {
   private emailService = inject(EmailService);
-  private cvGenerator = inject(CVGeneratorService);
+  private cvDownload = inject(CvDownloadService);
   contactForm: FormGroup;
   
   get isSubmitting(): boolean {
@@ -113,6 +112,6 @@ export class ContactComponent {
   }
 
   downloadCV(): void {
-    this.cvGenerator.generateCV(cvData);
+    this.cvDownload.download();
   }
 }

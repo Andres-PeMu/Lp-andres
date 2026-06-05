@@ -1,7 +1,7 @@
 <!-- Hero Section -->
 <section
   id="hero"
-  class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-background via-blue-50/30 to-cyan-50/20 px-4 py-20"
+  class="relative min-h-screen flex flex-col bg-gradient-to-br from-background via-blue-50/30 to-cyan-50/20 px-4 pt-20 pb-6 overflow-hidden"
 >
   <!-- Background decoration alegre y profesional -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -22,7 +22,8 @@
     <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px); background-size: 50px 50px;"></div>
   </div>
 
-  <div class="max-w-5xl mx-auto text-center relative z-10">
+  <div class="flex-1 flex items-center justify-center w-full">
+  <div class="max-w-5xl mx-auto text-center relative z-10 w-full">
     <!-- Greeting alegre -->
     <p
       appScrollAnimation
@@ -47,19 +48,19 @@
     <!-- Subtitle con más energía -->
     <p
       appScrollAnimation
-      class="text-xl md:text-2xl lg:text-3xl text-text-primary max-w-3xl mx-auto mb-6 font-medium animate-on-scroll leading-relaxed"
+      class="text-lg md:text-xl lg:text-2xl text-text-primary max-w-4xl mx-auto mb-6 font-medium animate-on-scroll leading-relaxed"
       style="animation-delay: 0.2s"
     >
-      Especializado en <span class="font-bold text-primary">Angular</span> y <span class="font-bold text-primary">Node.js</span>
+      <span class="font-bold text-primary">Angular</span> · <span class="font-bold text-primary">React</span> · <span class="font-bold text-primary">Vue</span> · <span class="font-bold text-primary">Node.js</span> · <span class="font-bold text-primary">Ionic</span> · <span class="font-bold text-primary">React Native</span>
     </p>
 
     <!-- Description más atractiva -->
     <p
       appScrollAnimation
-      class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-12 leading-relaxed animate-on-scroll"
+      class="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-12 leading-relaxed animate-on-scroll"
       style="animation-delay: 0.3s"
     >
-      Desarrollo aplicaciones web <span class="font-semibold text-text-primary">escalables</span>, <span class="font-semibold text-text-primary">mantenibles</span> y orientadas a negocio para entornos empresariales.
+      Ingeniero Electrónico con <span class="font-semibold text-text-primary">+5 años</span> construyendo aplicaciones web, móviles y sistemas en tiempo real para entornos empresariales. Desde telemetría vehicular de alta concurrencia hasta apps clínicas en <span class="font-semibold text-text-primary">iOS y Android</span> — me adapto al stack que el proyecto necesita.
     </p>
 
     <!-- CTA Buttons - Más atractivos y energéticos -->
@@ -95,6 +96,16 @@
       >
         Ver Proyectos
       </button>
+      <button
+        type="button"
+        (click)="downloadCV()"
+        class="px-8 py-4 border-2 border-text-secondary/30 text-text-primary rounded-lg font-semibold hover:border-primary hover:text-primary transition-all transform hover:scale-105 shadow-sm hover:shadow-md flex items-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+        Descargar CV
+      </button>
     </div>
 
     <!-- Stats / Quick Info - Más atractivo -->
@@ -117,19 +128,16 @@
       </div>
     </div>
   </div>
+  </div>
 
   <!-- Scroll indicator -->
-  <div
-    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer"
-    (click)="scrollToSection('about')"
-    appScrollAnimation
-    role="button"
-    tabindex="0"
-    (keydown.enter)="scrollToSection('about')"
-    aria-label="Scroll to about section"
-  >
-    <div class="flex flex-col items-center gap-2 text-primary hover:text-primary-dark transition-colors">
-      <span class="text-xs font-semibold uppercase tracking-wider">Scroll</span>
+  <div class="relative z-10 flex justify-center shrink-0 pt-4">
+    <button
+      type="button"
+      (click)="scrollToSection('about')"
+      class="flex flex-col items-center gap-1 text-primary/70 hover:text-primary transition-colors animate-bounce p-2"
+      aria-label="Ir a la sección Sobre mí"
+    >
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path
           stroke-linecap="round"
@@ -138,7 +146,7 @@
           d="M19 14l-7 7m0 0l-7-7m7 7V3"
         />
       </svg>
-    </div>
+    </button>
   </div>
 </section>
 
